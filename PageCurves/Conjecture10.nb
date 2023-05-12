@@ -1,0 +1,421 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13933,        413]
+NotebookOptionsPosition[     11311,        354]
+NotebookOutlinePosition[     11648,        369]
+CellTagsIndexPosition[     11605,        366]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Notes on conjecture 10", "Title",
+ CellChangeTimes->{{3.892848287119899*^9, 
+  3.892848292176341*^9}},ExpressionUUID->"9a3b3a03-9146-43bd-82bd-\
+b270b279a0fa"],
+
+Cell["\<\
+We show of an explicit example of a beamsplitter for which increasing the \
+initial squeezing strength causes a decrease in the Renyi-2 entropy.\
+\>", "Text",
+ CellChangeTimes->{{3.892848305305769*^9, 
+  3.8928483825473003`*^9}},ExpressionUUID->"95fc9af1-f0d3-4f35-9830-\
+6cfbb13fe96d"],
+
+Cell[CellGroupData[{
+
+Cell["Clear all variables", "Subsection",
+ CellChangeTimes->{{3.832687853153336*^9, 3.832687863744616*^9}, {
+  3.8326894919067373`*^9, 
+  3.8326894921974573`*^9}},ExpressionUUID->"9f2efba7-e819-43b3-a907-\
+6ede18f51e21"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Remove", "[", "\"\<GLO`*\>\"", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Remove", "[", "\"\<Global`*\>\"", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.832687866312986*^9, 3.832687874814521*^9}, {
+  3.832689495123608*^9, 3.832689549514179*^9}, {3.8328505495962353`*^9, 
+  3.832850555791978*^9}},
+ CellLabel->
+  "In[375]:=",ExpressionUUID->"91b8507f-9a39-43b9-a5ce-b467de06c14a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Import GLO package", "Subsection",
+ CellChangeTimes->{{3.8326883823753023`*^9, 
+  3.832688396644417*^9}},ExpressionUUID->"af6b8d9a-0dc1-48f5-be67-\
+588fb97642cc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "Get", "[", "\"\<~/Documents/Wolfram Mathematica/GLO/functions/GLO.wl\>\"", 
+   "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.832688401487566*^9, 3.83268842281502*^9}, 
+   3.83268926818783*^9},
+ CellLabel->
+  "In[377]:=",ExpressionUUID->"5e635724-0308-4dce-8f80-10f18417776a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Consider two modes; the first initialized to squeezing s and the second  to \
+squeezing 2. Construct the initial covariance matrix\
+\>", "Subsection",
+ CellChangeTimes->{{3.892848391946988*^9, 
+  3.89284844025983*^9}},ExpressionUUID->"365ac8ce-6c8c-4cc2-bf46-\
+23078b33f673"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[Sigma]0", "=", 
+   RowBox[{"initialSqueezedState", "@", 
+    RowBox[{"{", 
+     RowBox[{"s1", ",", "s2"}], "}"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"\[Sigma]0", "//", "MatrixForm"}]}], "Input",
+ CellChangeTimes->{{3.8928480672490273`*^9, 3.892848137778023*^9}, {
+  3.892848185981765*^9, 3.8928482315691433`*^9}, {3.8928483308271217`*^9, 
+  3.892848333601305*^9}, {3.8928484236331253`*^9, 3.892848453914542*^9}, {
+  3.892848685483583*^9, 3.892848685837405*^9}, {3.892848719943421*^9, 
+  3.892848738749687*^9}},
+ CellLabel->
+  "In[378]:=",ExpressionUUID->"9d34f24e-c807-4c5c-8fb8-5912748f1f68"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{
+        RowBox[{"-", "2"}], " ", "s1"}]], "0", "0", "0"},
+     {"0", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"2", " ", "s1"}]], "0", "0"},
+     {"0", "0", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{
+        RowBox[{"-", "2"}], " ", "s2"}]], "0"},
+     {"0", "0", "0", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"2", " ", "s2"}]]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.8928484486252317`*^9, 3.892848454267189*^9}, {
+   3.892848686419882*^9, 3.8928487389548197`*^9}, 3.892848975300419*^9, 
+   3.892849007355332*^9},
+ CellLabel->
+  "Out[379]//MatrixForm=",ExpressionUUID->"30666405-2555-40af-8cd8-\
+8a8d6cc4dbda"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Next, consider an arbitrary beamsplitter", "Subsection",
+ CellChangeTimes->{{3.892848462647316*^9, 
+  3.892848467484103*^9}},ExpressionUUID->"6ceed26d-484c-495c-bf29-\
+1c020d75bbd4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"u", "=", 
+   RowBox[{"beamsplitterMatrix", "@", "\[Beta]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"u", "//", "MatrixForm"}]}], "Input",
+ CellChangeTimes->{{3.8928484751851788`*^9, 3.8928484754549217`*^9}, {
+  3.892848984711904*^9, 3.892848985883869*^9}},
+ CellLabel->
+  "In[380]:=",ExpressionUUID->"1dfef686-8947-43e3-bae3-fff72a8c9fda"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{"Cos", "[", "\[Beta]", "]"}], "0", 
+      RowBox[{"-", 
+       RowBox[{"Sin", "[", "\[Beta]", "]"}]}], "0"},
+     {"0", 
+      RowBox[{"Cos", "[", "\[Beta]", "]"}], "0", 
+      RowBox[{"-", 
+       RowBox[{"Sin", "[", "\[Beta]", "]"}]}]},
+     {
+      RowBox[{"Sin", "[", "\[Beta]", "]"}], "0", 
+      RowBox[{"Cos", "[", "\[Beta]", "]"}], "0"},
+     {"0", 
+      RowBox[{"Sin", "[", "\[Beta]", "]"}], "0", 
+      RowBox[{"Cos", "[", "\[Beta]", "]"}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{
+  3.892848475930998*^9, {3.892848723157666*^9, 3.892848740658802*^9}, 
+   3.8928489753404083`*^9, 3.8928490074261837`*^9},
+ CellLabel->
+  "Out[381]//MatrixForm=",ExpressionUUID->"8a1f7fd1-49da-4a8d-bb94-\
+165ecce7b66b"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Apply the beamsplitter to the initial state and then look at the Renyi-2 \
+entropy of the reduced state on just the first mode\
+\>", "Subsection",
+ CellChangeTimes->{{3.8928484786524754`*^9, 3.892848535886045*^9}, {
+  3.89284878035627*^9, 
+  3.892848781044209*^9}},ExpressionUUID->"c84d25a0-00cf-431f-887b-\
+670c970bfb42"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ren2", "=", 
+  RowBox[{
+   RowBox[{"renyi2EntropyOfLeftPartition", "[", 
+    RowBox[{
+     RowBox[{"\[Sigma]0", "~", "applyByCongruence", "~", "u"}], ",", "1"}], 
+    "]"}], "//", "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.892848506625177*^9, 3.892848506842032*^9}, {
+  3.892848543076542*^9, 3.8928485543868723`*^9}, {3.892848643364194*^9, 
+  3.892848650019678*^9}, {3.8928486945356913`*^9, 3.8928487047960663`*^9}},
+ CellLabel->
+  "In[382]:=",ExpressionUUID->"553f6377-1397-4c85-b4c0-0135fc09de06"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "1.`"}], " ", 
+  RowBox[{"Log", "[", 
+   FractionBox["1", 
+    SqrtBox[
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"Cos", "[", "\[Beta]", "]"}], "4"], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2.`"}], " ", "s1"}], "-", 
+         RowBox[{"2.`", " ", "s2"}]}]], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"4.`", " ", "s1"}]], "+", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"4.`", " ", "s2"}]]}], ")"}], " ", 
+       SuperscriptBox[
+        RowBox[{"Cos", "[", "\[Beta]", "]"}], "2"], " ", 
+       SuperscriptBox[
+        RowBox[{"Sin", "[", "\[Beta]", "]"}], "2"]}], "+", 
+      SuperscriptBox[
+       RowBox[{"Sin", "[", "\[Beta]", "]"}], "4"]}]]], "]"}]}]], "Output",
+ CellChangeTimes->{
+  3.8928485096089897`*^9, 3.892848669080456*^9, {3.892848726252893*^9, 
+   3.892848743917272*^9}, 3.892848976178999*^9, 3.892849008241785*^9},
+ CellLabel->
+  "Out[382]=",ExpressionUUID->"3901a177-64ec-41ea-b628-16304558405a"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Look at the derivative of the entropy with respect to s1", "Subsection",
+ CellChangeTimes->{{3.892848759944631*^9, 
+  3.892848788584638*^9}},ExpressionUUID->"586c2171-9d28-4f1c-b265-\
+65f80b993982"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"deriv", "=", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{"ren2", ",", "s1"}], "]"}], "//", "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.892848790054323*^9, 3.89284880333952*^9}},
+ CellLabel->
+  "In[383]:=",ExpressionUUID->"674359e7-8acb-4e58-b243-af44424c872b"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"0.25`", " ", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"4.`", " ", "s1"}]]}], "-", 
+     RowBox[{"0.25`", " ", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"4.`", " ", "s2"}]]}]}], ")"}], " ", 
+   SuperscriptBox[
+    RowBox[{"Sin", "[", 
+     RowBox[{"2", " ", "\[Beta]"}], "]"}], "2"]}], 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{
+      RowBox[{"2.`", " ", "s1"}], "+", 
+      RowBox[{"2.`", " ", "s2"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"Cos", "[", "\[Beta]", "]"}], "4"]}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"4.`", " ", "s1"}]], "+", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"4.`", " ", "s2"}]]}], ")"}], " ", 
+    SuperscriptBox[
+     RowBox[{"Cos", "[", "\[Beta]", "]"}], "2"], " ", 
+    SuperscriptBox[
+     RowBox[{"Sin", "[", "\[Beta]", "]"}], "2"]}], "+", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{
+      RowBox[{"2.`", " ", "s1"}], "+", 
+      RowBox[{"2.`", " ", "s2"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{"Sin", "[", "\[Beta]", "]"}], "4"]}]}]]], "Output",
+ CellChangeTimes->{3.8928488041142597`*^9, 3.892848976422228*^9, 
+  3.89284900856669*^9},
+ CellLabel->
+  "Out[383]=",ExpressionUUID->"85e76cd4-edc8-4e86-bbcd-6bdfb136ff4e"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+For some values of \[Beta], s1>0, s2, this is negative, meaning that when \
+increasing the magnitude of s1, the entropy decreases\
+\>", "Subsection",
+ CellChangeTimes->{{3.8928488387007437`*^9, 
+  3.8928488752160053`*^9}},ExpressionUUID->"51b93d84-c1eb-42ed-a35d-\
+444501bb1af9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"deriv", "/.", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"\[Beta]", "\[Rule]", 
+     RowBox[{"\[Pi]", "/", "4"}]}], ",", 
+    RowBox[{"s1", "\[Rule]", "1"}], ",", 
+    RowBox[{"s2", "\[Rule]", "2"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.8928488768655863`*^9, 3.8928489197018347`*^9}},
+ CellLabel->
+  "In[384]:=",ExpressionUUID->"ac9b79c6-50ed-4dd9-968e-297b6218e1ad"],
+
+Cell[BoxData[
+ RowBox[{"-", "0.761594155955765`"}]], "Output",
+ CellChangeTimes->{{3.892848894578821*^9, 3.8928489199405823`*^9}, 
+   3.892848976537648*^9, 3.892849008678953*^9},
+ CellLabel->
+  "Out[384]=",ExpressionUUID->"f52d9cb2-bb57-4663-9dbd-65e6bbf78117"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 903},
+WindowMargins->{{186, Automatic}, {Automatic, 4}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 165, 3, 98, "Title",ExpressionUUID->"9a3b3a03-9146-43bd-82bd-b270b279a0fa"],
+Cell[748, 27, 296, 6, 58, "Text",ExpressionUUID->"95fc9af1-f0d3-4f35-9830-6cfbb13fe96d"],
+Cell[CellGroupData[{
+Cell[1069, 37, 220, 4, 54, "Subsection",ExpressionUUID->"9f2efba7-e819-43b3-a907-6ede18f51e21"],
+Cell[1292, 43, 433, 9, 52, "Input",ExpressionUUID->"91b8507f-9a39-43b9-a5ce-b467de06c14a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1762, 57, 168, 3, 54, "Subsection",ExpressionUUID->"af6b8d9a-0dc1-48f5-be67-588fb97642cc"],
+Cell[1933, 62, 313, 8, 30, "Input",ExpressionUUID->"5e635724-0308-4dce-8f80-10f18417776a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2283, 75, 285, 6, 81, "Subsection",ExpressionUUID->"365ac8ce-6c8c-4cc2-bf46-23078b33f673"],
+Cell[CellGroupData[{
+Cell[2593, 85, 640, 13, 52, "Input",ExpressionUUID->"9d34f24e-c807-4c5c-8fb8-5912748f1f68"],
+Cell[3236, 100, 1153, 33, 106, "Output",ExpressionUUID->"30666405-2555-40af-8cd8-8a8d6cc4dbda"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4438, 139, 188, 3, 54, "Subsection",ExpressionUUID->"6ceed26d-484c-495c-bf29-1c020d75bbd4"],
+Cell[CellGroupData[{
+Cell[4651, 146, 381, 9, 52, "Input",ExpressionUUID->"1dfef686-8947-43e3-bae3-fff72a8c9fda"],
+Cell[5035, 157, 1162, 33, 98, "Output",ExpressionUUID->"8a1f7fd1-49da-4a8d-bb94-165ecce7b66b"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6246, 196, 332, 7, 81, "Subsection",ExpressionUUID->"c84d25a0-00cf-431f-887b-670c970bfb42"],
+Cell[CellGroupData[{
+Cell[6603, 207, 532, 11, 30, "Input",ExpressionUUID->"553f6377-1397-4c85-b4c0-0135fc09de06"],
+Cell[7138, 220, 1124, 31, 61, "Output",ExpressionUUID->"3901a177-64ec-41ea-b628-16304558405a"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8311, 257, 204, 3, 54, "Subsection",ExpressionUUID->"586c2171-9d28-4f1c-b265-65f80b993982"],
+Cell[CellGroupData[{
+Cell[8540, 264, 294, 7, 30, "Input",ExpressionUUID->"674359e7-8acb-4e58-b243-af44424c872b"],
+Cell[8837, 273, 1412, 43, 62, "Output",ExpressionUUID->"85e76cd4-edc8-4e86-bbcd-6bdfb136ff4e"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10298, 322, 289, 6, 81, "Subsection",ExpressionUUID->"51b93d84-c1eb-42ed-a35d-444501bb1af9"],
+Cell[CellGroupData[{
+Cell[10612, 332, 395, 10, 30, "Input",ExpressionUUID->"ac9b79c6-50ed-4dd9-968e-297b6218e1ad"],
+Cell[11010, 344, 261, 5, 69, "Output",ExpressionUUID->"f52d9cb2-bb57-4663-9dbd-65e6bbf78117"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
